@@ -165,6 +165,7 @@ export enum ModelProvider {
   DeepSeek = "DeepSeek",
   SiliconFlow = "SiliconFlow",
   "302.AI" = "302.AI",
+  BiomedRAG = "BiomedRAG",
 }
 
 export const Stability = {
