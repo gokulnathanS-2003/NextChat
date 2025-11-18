@@ -136,6 +136,7 @@ export enum ServiceProvider {
   DeepSeek = "DeepSeek",
   SiliconFlow = "SiliconFlow",
   "302.AI" = "302.AI",
+  BiomedRAG = "BiomedRAG",
 }
 
 // Google API safety settings, see https://ai.google.dev/gemini-api/docs/safety-settings
