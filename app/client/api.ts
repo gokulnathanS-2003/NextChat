@@ -178,6 +178,9 @@ export class ClientApi {
       case ModelProvider["302.AI"]:
         this.llm = new Ai302Api();
         break;
+      case ModelProvider.BiomedRAG:
+        this.llm = new BiomedRagApi();
+        break;
       default:
         this.llm = new ChatGPTApi();
     }
