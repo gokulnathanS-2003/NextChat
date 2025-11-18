@@ -59,12 +59,19 @@ export class BiomedRagApi implements LLMApi {
       baseUrl = isApp ? BIOMED_RAG_BASE_URL : ApiPath.BiomedRAG;
     }
 
+    // Handle case where baseUrl is just a relative path
+    if (baseUrl.startsWith("/api/") || baseUrl.startsWith(ApiPath.BiomedRAG)) {
+      // For development, use localhost:8000 directly
+      baseUrl = "http://localhost:8000";
+    }
+
     if (baseUrl.endsWith("/")) {
       baseUrl = baseUrl.slice(0, baseUrl.length - 1);
     }
 
-    if (!baseUrl.startsWith("http") && !baseUrl.startsWith(ApiPath.BiomedRAG)) {
-      baseUrl = "https://" + baseUrl;
+    // Ensure we have a complete URL
+    if (!baseUrl.startsWith("http")) {
+      baseUrl = "http://" + baseUrl;
     }
 
     console.log("[BiomedRAG Proxy Endpoint] ", baseUrl, path);
