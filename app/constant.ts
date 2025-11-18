@@ -747,6 +747,8 @@ const ai302Models = [
   "gemini-2.5-pro",
 ];
 
+const biomedragModels = ["biomedrag-query"];
+
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
