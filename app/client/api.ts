@@ -402,6 +402,8 @@ export function getClientApi(provider: ServiceProvider): ClientApi {
       return new ClientApi(ModelProvider.SiliconFlow);
     case ServiceProvider["302.AI"]:
       return new ClientApi(ModelProvider["302.AI"]);
+    case ServiceProvider.BiomedRAG:
+      return new ClientApi(ModelProvider.BiomedRAG);
     default:
       return new ClientApi(ModelProvider.GPT);
   }
