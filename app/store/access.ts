@@ -142,6 +142,10 @@ const DEFAULT_ACCESS_STATE = {
   ai302Url: DEFAULT_AI302_URL,
   ai302ApiKey: "",
 
+  // BiomedRAG
+  biomedragUrl: DEFAULT_BIOMED_RAG_URL,
+  biomedragEmail: "",
+
   // server config
   needCode: true,
   hideUserApiKey: false,
