@@ -46,37 +46,37 @@ export class BiomedRagApi implements LLMApi {
 
   path(path: string): string {
     const accessStore = useAccessStore.getState();
-    const clientConfig = getClientConfig();
 
-    let baseUrl = "";
+    let baseUrl: string = "";
 
-    if (accessStore.useCustomConfig && accessStore.biomedragUrl) {
+    if (accessStore.useCustomConfig) {
       baseUrl = accessStore.biomedragUrl;
     }
 
-    if (baseUrl.length === 0) {
+    // if endpoint is empty, use default endpoint
+    if (baseUrl.trim().length === 0) {
       const isApp = !!getClientConfig()?.isApp;
+
       baseUrl = isApp ? BIOMED_RAG_BASE_URL : ApiPath.BiomedRAG;
     }
 
-    // Handle case where baseUrl is just a relative path
-    if (baseUrl.startsWith("/api/") || baseUrl.startsWith(ApiPath.BiomedRAG)) {
-      // For development, use localhost:8000 directly
-      baseUrl = "http://localhost:8000";
+    // For BiomedRAG, always use direct connection to avoid proxy issues
+    if (baseUrl.startsWith("/api")) {
+      baseUrl = BIOMED_RAG_BASE_URL;
     }
 
+    if (!baseUrl.startsWith("http") && !baseUrl.startsWith("/api")) {
+      baseUrl = "https://" + baseUrl;
+    }
+
+    // Remove trailing slash
     if (baseUrl.endsWith("/")) {
-      baseUrl = baseUrl.slice(0, baseUrl.length - 1);
+      baseUrl = baseUrl.slice(0, -1);
     }
 
-    // Ensure we have a complete URL
-    if (!baseUrl.startsWith("http")) {
-      baseUrl = "http://" + baseUrl;
-    }
+    console.log("[BiomedRAG Endpoint] ", baseUrl, path);
 
-    console.log("[BiomedRAG Proxy Endpoint] ", baseUrl, path);
-
-    return [baseUrl, path].join("/");
+    return `${baseUrl}${path}`;
   }
 
   async extractMessage(res: any) {
