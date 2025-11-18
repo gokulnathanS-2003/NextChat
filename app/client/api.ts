@@ -274,6 +274,7 @@ export function getHeaders(ignoreHeaders: boolean = false) {
     const isSiliconFlow =
       modelConfig.providerName === ServiceProvider.SiliconFlow;
     const isAI302 = modelConfig.providerName === ServiceProvider["302.AI"];
+    const isBiomedRAG = modelConfig.providerName === ServiceProvider.BiomedRAG;
     const isEnabledAccessControl = accessStore.enabledAccessControl();
     const apiKey = isGoogle
       ? accessStore.googleApiKey
