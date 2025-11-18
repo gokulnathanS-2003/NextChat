@@ -916,6 +916,17 @@ export const DEFAULT_MODELS = [
       sorted: 15,
     },
   })),
+  ...biomedragModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "biomedrag",
+      providerName: "BiomedRAG",
+      providerType: "biomedrag",
+      sorted: 16,
+    },
+  })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
