@@ -302,6 +302,8 @@ export function getHeaders(ignoreHeaders: boolean = false) {
         : ""
       : isAI302
       ? accessStore.ai302ApiKey
+      : isBiomedRAG
+      ? accessStore.biomedragEmail || "user@example.com"
       : accessStore.openaiApiKey;
     return {
       isGoogle,
