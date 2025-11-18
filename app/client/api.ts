@@ -319,6 +319,7 @@ export function getHeaders(ignoreHeaders: boolean = false) {
       isChatGLM,
       isSiliconFlow,
       isAI302,
+      isBiomedRAG,
       apiKey,
       isEnabledAccessControl,
     };
